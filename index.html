@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe & Nutrition Analyzer</title>
+
+    <meta name="description" content="Search for recipes and analyze full nutrition using Edamam's API.">
+    <meta name="keywords" content="recipes, nutrition, food search, healthy eating">
+    <meta name="author" content="Ejiro Ijabor">
+
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>Recipe & Nutrition Analyzer</h1>
+        <p>Search recipes and view full nutrition breakdown</p>
+    </header>
+
+    <section class="search-section" role="search">
+        <label for="searchInput" class="visually-hidden">Search recipes</label>
+
+        <input id="searchInput" type="text" placeholder="Search e.g. chicken, rice, bread">
+        <button id="searchBtn">Search</button>
+        <button id="viewFavoritesBtn">Favorites ❤️</button>
+    </section>
+
+    <div id="loadingSpinner" class="loading hidden">
+        Loading recipes...
+    </div>
+
+    <section id="results" class="results-section"></section>
+
+    <section id="favoritesSection" class="favorites-section hidden">
+        <h2>Your Favorite Recipes</h2>
+        <div id="favoritesList" class="results-section"></div>
+    </section>
+
+    <aside id="nutritionPanel" class="nutrition-panel hidden"></aside>
+
+    <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>
