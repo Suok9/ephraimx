@@ -1,6 +1,6 @@
 export async function analyzeIngredients(ingredientsList) {
-    const appId = "759a9f86";   // Replace with your Edamam Nutrition App ID
-    const appKey = "ba2d23594e77b0cbc8c8fc6c40d2f9c7"; // Replace with your Edamam Nutrition App Key
+    const appId = "759a9f86";   
+    const appKey = "ba2d23594e77b0cbc8c8fc6c40d2f9c7";
 
     const url = `https://api.edamam.com/api/nutrition-details?app_id=${appId}&app_key=${appKey}`;
 
