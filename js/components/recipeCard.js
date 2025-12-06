@@ -15,7 +15,7 @@ export function createRecipeCard(recipe) {
         <button class="save-fav-btn">Save to Favorites ❤️</button>
     `;
 
-    // Handle "View Nutrition"
+    // View Nutrition
     const viewButton = card.querySelector(".view-nutrition-btn");
     viewButton.addEventListener("click", async () => {
         try {
@@ -27,7 +27,7 @@ export function createRecipeCard(recipe) {
         }
     });
 
-    // Handle Favorites
+    // Handling of Favorites
     const saveBtn = card.querySelector(".save-fav-btn");
     saveBtn.addEventListener("click", () => {
         saveFavorite(recipe);

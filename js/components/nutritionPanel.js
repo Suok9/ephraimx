@@ -22,12 +22,11 @@ export function showNutritionPanel(nutritionData, recipeLabel) {
         </ul>
     `;
 
-    // Show panel
+    
     panel.classList.remove("hidden");
-    // Slide in
+    
     panel.classList.add("open");
 
-    // Close button
     document.getElementById("closeNutrition").addEventListener("click", () => {
         panel.classList.remove("open");
         setTimeout(() => {
