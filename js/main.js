@@ -1,6 +1,6 @@
 import { searchRecipes } from "./api/recipes.js";
 import { createRecipeCard } from "./components/recipeCard.js";
-import { loadFavorites } from "./utils/storage.js";
+import { loadFavorites, removeFavorite } from "./utils/storage.js";
 
 
 
@@ -87,7 +87,15 @@ viewFavoritesBtn.addEventListener("click", () => {
                 <img src="${recipe.image}" alt="${recipe.label}" class="recipe-img">
                 <h3>${recipe.label}</h3>
                 <p><strong>Calories:</strong> ${Math.round(recipe.calories)}</p>
+
+                <button class="remove-btn">Remove ❌</button>
             `;
+
+            // Remove button logic
+            card.querySelector(".remove-btn").addEventListener("click", () => {
+                removeFavorite(recipe.uri);  
+                card.remove();  
+            });
             
             favoritesList.appendChild(card);
         });
