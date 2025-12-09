@@ -3,47 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe & Nutrition Analyzer</title>
+    <title>Recipe Search and Nutrition Analyzer</title>
 
-    <meta name="description" content="Search for recipes and analyze full nutrition using Edamam's API.">
-    <meta name="keywords" content="recipes, nutrition, food search, healthy eating">
+    <meta name="description" content="Full search for recipes and analysis of full nutrition via WindellCorp web application">
+    <meta name="keywords" content="recipes, nutrition, food search">
     <meta name="author" content="Ejiroghene Ijabor">
 
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 <div class="logo-container">
-    <img src="images/logo.png" alt="Site Logo">
+    <a href="index.html"><img src="images/logo.png" alt="Site Logo"></a>
 </div>
     <header class="header">
         <br>
         <br>
-        <h1>Recipe & Nutrition Analyzer</h1>
-        <p>Search recipes and view full nutrition breakdown</p>
+        <h1 class="outlined" >Recipe & Nutrition Analyzer</h1>
+        <p  subtitle">Search recipes and view full nutrition breakdown</p>
     </header>
 
     <section class="search-section" role="search">
         <label for="searchInput" class="visually-hidden">Search recipes</label>
 
-        <input id="searchInput" type="text" placeholder="Search e.g. chicken, rice, bread">
-        <button id="searchBtn">Search</button>
-        <button id="viewFavoritesBtn">Favorites ❤️</button>
+        <input id="searchInput" type="text" daplaceholder="Search e.g. chicken, rice, bread"  >
+        <button id="searchBtn" >Search</button>
+        <button id="viewFavoritesBtn"  >Favorites ❤️</button>
     </section>
 
-    <div id="loadingSpinner" class="loading hidden">
+    <div id="loadingSpinner" class="loading hidden"  >
         Loading details...
     </div>
 
     <section id="results" class="results-section"></section>
 
     <section id="favoritesSection" class="favorites-section hidden">
-        <h2>Your Favorites </h2>
+        <h2  favorites Title">Your Favorites </h2>
         <div id="favoritesList" class="results-section"></div>
     </section>
 
     <aside id="nutritionPanel" class="nutrition-panel hidden"></aside>
 
     <script type="module" src="js/main.js"></script>
-
+<footer>
+  <div class="footer-content">
+    <span>&copy;2025 E. IJABOR</span>
+  </div>
+</footer>
+    
 </body>
 </html>
