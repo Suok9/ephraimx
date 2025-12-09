@@ -1,5 +1,3 @@
-
-
 import { searchRecipes } from "./api/recipes.js";
 import { createRecipeCard } from "./components/recipeCard.js";
 import { loadFavorites, removeFavorite } from "./utils/storage.js";
@@ -23,29 +21,27 @@ searchBtn.addEventListener("click", () => {
         return;
     }
     
-    loadRecipes(query);
+    // If user searches, hide favorites if open
+    favoritesSection.classList.add("hidden");
+    resultsSection.classList.remove("hidden");
     
+    loadRecipes(query);
 });
 
 async function loadRecipes(query) {
-    
     loadingSpinner.classList.remove("hidden");
     
     try {
-        
         const data = await searchRecipes(query);
-        
         
         resultsSection.innerHTML = "";
         
-        
         if (data.hits.length === 0) {
-            resultsSection.innerHTML = `  
-            <p class="no-results">No recipes found. Try another search term.</p>  
-        `;
+            resultsSection.innerHTML = `
+                <p class="no-results">No recipes found. Try another search term.</p>
+            `;
             return;
         }
-        
         
         data.hits.forEach(item => {
             const card = createRecipeCard(item.recipe);
@@ -53,43 +49,53 @@ async function loadRecipes(query) {
         });
         
     } catch (error) {
-        
-        resultsSection.innerHTML = `  
-        <p class="error-message">Something went wrong while fetching recipes. Please try again later.</p>  
-    `;
+        resultsSection.innerHTML = `
+            <p class="error-message">Something went wrong while fetching recipes. Please try again later.</p>
+        `;
         console.error("Error loading recipes:", error);
     }
     
     loadingSpinner.classList.add("hidden");
-    
 }
-
 
 
 // FAVORITES BUTTON
 viewFavoritesBtn.addEventListener("click", () => {
-    const favorites = loadFavorites();
+    const isHidden = favoritesSection.classList.contains("hidden");
     
+    if (isHidden) {
+        // Opening favorites:
+        loadFavoritesUI();
+        favoritesSection.classList.remove("hidden");
+        resultsSection.classList.add("hidden"); // hide search results
+    } else {
+        // Closing favorites:
+        favoritesSection.classList.add("hidden");
+        resultsSection.classList.remove("hidden"); // show search results again
+    }
+});
+
+function loadFavoritesUI() {
+    const favorites = loadFavorites();
     favoritesList.innerHTML = "";
     
     if (favorites.length === 0) {
-        favoritesList.innerHTML = `  
-        <p class="no-results">You have no saved favorite recipes.</p>  
-    `;
+        favoritesList.innerHTML = `
+            <p class="no-results">You have no saved favorite recipes.</p>
+        `;
     } else {
         favorites.forEach(recipe => {
             const card = document.createElement("div");
             card.classList.add("recipe-card");
             
-            card.innerHTML = `  
-            <img src="${recipe.image}" alt="${recipe.label}" class="recipe-img">  
-            <h3>${recipe.label}</h3>  
-            <p><strong>Calories:</strong> ${Math.round(recipe.calories)}</p>  
-
-            <button class="remove-btn">Remove ❌</button>  
-        `;
+            card.innerHTML = `
+                <img src="${recipe.image}" alt="${recipe.label}" class="recipe-img">
+                <h3>${recipe.label}</h3>
+                <p><strong>Calories:</strong> ${Math.round(recipe.calories)}</p>
+                <button class="remove-btn">Remove ❌</button>
+            `;
             
-            // Remove button logic  
+            // Remove button logic
             card.querySelector(".remove-btn").addEventListener("click", () => {
                 removeFavorite(recipe.uri);
                 card.remove();
@@ -98,8 +104,4 @@ viewFavoritesBtn.addEventListener("click", () => {
             favoritesList.appendChild(card);
         });
     }
-    
-    favoritesSection.classList.toggle("hidden");
-    
-});
-
+}
